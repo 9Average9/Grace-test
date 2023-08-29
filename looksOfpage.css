@@ -248,6 +248,7 @@ cursor: pointer;
   border-radius: 10px;
   box-shadow: 0 0 12px 5px rgba(34, 34, 34, 0.66);
   line-height: 40px;
+  text-align: center;
 }
 
 .close-button {
