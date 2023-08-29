@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', function() {
   // Create another element for the text
   var textBox = document.createElement('span');
   textBox.innerText =
-      "Welcome!\nThis test is 80 questions long, once completed compare your results to the bottom of the page.";
+      "Welcome!\nThis test will roughly take 15 minutes to complete.";
 
   // Append the text element to the alert box
   alertBox.appendChild(textBox);
