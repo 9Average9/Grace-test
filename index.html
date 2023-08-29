@@ -1475,21 +1475,17 @@ function displayQuestions() {
           button.dataset.buttonIndex = j; // Add a data attribute to identify the button index
 
           button.addEventListener("click", function() {
-              const selectedButton = questionElement.querySelector("button.selected");
-              if (selectedButton && selectedButton !== button) {
-                  selectedButton.classList.remove("selected");
-                  selectedButton.style.backgroundColor = ""; // Change the background color of the previously selected button back to normal
-              }
-              else if (selectedButton === button) {
-                  selectedButton.classList.remove("selected");
-                  button.style.backgroundColor = ""; // Change the background color of the selected button back to normal
-              }
-              else {
-                  button.classList.toggle("selected");
-                  button.style.backgroundColor = "black"; // Change the background color of the selected button
-              }
-              checkAnswers();
-          });
+    const selectedButton = questionElement.querySelector("button.selected");
+    if (selectedButton) {
+        selectedButton.classList.remove("selected");
+        selectedButton.style.backgroundColor = ""; // Change the background color of the previously selected button back to normal
+    }
+
+    button.classList.add("selected");
+    button.style.backgroundColor = "black"; // Change the background color of the selected button
+
+    checkAnswers();
+});
 
           answerContainer.appendChild(button);
       });
@@ -1640,34 +1636,45 @@ window.addEventListener("beforeunload", function() {
 
 
 function scrollToPhrase() {
-var phrase = document.getElementById("searchInput").value.toLowerCase();
-if (phrase) {
-  var elements = document.querySelectorAll("#all-gifts h6");
-  var found = false;
-  for (var i = 0; i < elements.length; i++) {
-    var element = elements[i];
-    var content = element.innerText.toLowerCase();
-    var startIndex = content.indexOf(phrase);
-    if (startIndex !== -1) {
-      var node = element.childNodes[0];
-      var range = document.createRange();
-      range.selectNodeContents(node);
-      var text = node.textContent.toLowerCase();
-      var start = text.indexOf(phrase);
-      range.setStart(node, start);
-      range.setEnd(node, start + phrase.length);
-      var rect = range.getBoundingClientRect();
-      element.parentElement.scrollTop = rect.top + window.pageYOffset - element.parentElement.offsetTop;
-      found = true;
-      break;
+  var phrase = document.getElementById("searchInput").value.trim().toLowerCase(); // Trim the search phrase to remove trailing spaces
+  if (phrase) {
+    var elements = document.querySelectorAll("#all-gifts h6");
+    var found = false;
+    for (var i = 0; i < elements.length; i++) {
+      var element = elements[i];
+      var content = element.innerText.toLowerCase();
+      var startIndex = content.indexOf(phrase);
+      if (startIndex !== -1) {
+        var node = element.childNodes[0];
+        var range = document.createRange();
+        range.selectNodeContents(node);
+        var text = node.textContent.toLowerCase();
+        var start = text.indexOf(phrase);
+        range.setStart(node, start);
+        range.setEnd(node, start + phrase.length);
+        var rect = range.getBoundingClientRect();
+        element.parentElement.scrollTop = rect.top + window.pageYOffset - element.parentElement.offsetTop;
+        found = true;
+        break;
+      }
+    }
+    if (found) {
+      // Phrase found, do something here if needed
+    } else {
+      elements.forEach((element) => {
+        var content = element.innerText.toLowerCase();
+        if (content.includes(phrase)) {
+          var rect = element.getBoundingClientRect();
+          element.parentElement.scrollTop = rect.top + window.pageYOffset - element.parentElement.offsetTop;
+          found = true;
+          return;
+        }
+      });
+      if (!found) {
+        alert("You misspelled the Gift");
+      }
     }
   }
-  if (found) {
-    // Phrase found, do something here if needed
-  } else {
-    alert("You misspelled the Gift");
-  }
-}
 }
 
 document.getElementById("searchInput").addEventListener("keyup", function(event) {
