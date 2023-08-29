@@ -397,6 +397,7 @@ h6 {
   margin-bottom: -45px;
   margin-top: 40px;
 }
+
 /*iphone max size*/
 @media (max-width: 768px){
   .topnav{
@@ -480,8 +481,11 @@ body{
 
 
 }
+
+
+
 /*smaller than 12 promax*/
-@media (max-width: 427px){
+@media (max-width: 391px){
   .topnav{
    display: hidden;
   }
