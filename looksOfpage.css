@@ -22,26 +22,26 @@ html, body {
 
 body {
   margin: 0;
-  height: 100dvh;
-  max-height: 100dvh;
+  height: 100svh;
+  max-height: 100svh;
   background: linear-gradient(135deg, var(--blue), var(--blue-dark));
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding: 0 10px;
+  padding: 0 10px calc(10px + env(safe-area-inset-bottom));
 }
 
 /* HEADER */
 .topnav {
-  flex: 0 0 52px;
-  height: 52px;
+  flex: 0 0 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-weight: 800;
-  font-size: clamp(1.2rem, 4vw, 2rem);
+  font-size: clamp(1.1rem, 4vw, 1.8rem);
   background: rgba(0,0,0,.2);
 }
 
@@ -59,7 +59,7 @@ body {
   background: white;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 14px;
+  padding: 12px;
 }
 
 /* QUESTIONS */
@@ -77,7 +77,7 @@ body {
 .question p {
   margin: 0 0 10px;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 /* ANSWERS */
@@ -89,13 +89,13 @@ body {
 }
 
 .answer-button {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: none;
   color: white;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
 }
 
@@ -131,7 +131,6 @@ body {
   flex: 0 0 auto;
   width: min(1100px, 100%);
   margin: 0 auto;
-  padding-bottom: env(safe-area-inset-bottom);
 }
 
 #searchbar {
@@ -154,8 +153,8 @@ body {
 
 #searchButton,
 #infoButton {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -181,12 +180,12 @@ body {
 /* RESULT BOX */
 #result {
   position: fixed;
-  top: 70px;
+  top: 60px;
   left: 50%;
   transform: translateX(-50%);
-  width: min(500px, 90vw);
+  width: min(480px, 90vw);
   background: white;
-  padding: 20px;
+  padding: 18px;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   display: none;
@@ -208,12 +207,12 @@ body {
 
 #gift-modal-content,
 #info-modal-content {
-  width: min(700px, 90vw);
-  max-height: 80vh;
+  width: min(650px, 90vw);
+  max-height: 75svh;
   overflow-y: auto;
   background: white;
   border-radius: var(--radius);
-  padding: 20px;
+  padding: 18px;
   position: relative;
 }
 
@@ -223,15 +222,15 @@ body {
 #close-button,
 .close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 30px;
-  height: 30px;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   border: none;
   background: rgba(40, 74, 149, 0.1);
   color: var(--blue);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   cursor: pointer;
 }
 
@@ -241,10 +240,10 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(500px, 90vw);
+  width: min(480px, 90vw);
   background: white;
   border-radius: var(--radius);
-  padding: 20px;
+  padding: 18px;
   text-align: center;
   z-index: 400;
 }
