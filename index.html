@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+</html><!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -23,6 +24,43 @@
   </div>
 </div>
 
+
+<div id="info-modal">
+  <div id="info-modal-content">
+    <button id="close-info-modal" type="button">X</button>
+
+    <h3>About Spiritual Gifts</h3>
+
+    <p>
+      The Spiritual gifts are designed to be used in and for the body of Christ,
+      particularly in the local church. Every believer has at least one spiritual
+      gift that is given to them at the time of salvation by the Holy Spirit.
+      While we should all use our spiritual gifts for the sake of the body, we
+      should also strive to teach and train others to use our gifts as well.
+    </p>
+
+    <h3>Gifts Included</h3>
+
+    <ul id="gift-list">
+      <li>Administration</li>
+      <li>Celibacy</li>
+      <li>Discernment</li>
+      <li>Evangelism</li>
+      <li>Exhortation/Encouragement</li>
+      <li>Faith</li>
+      <li>Giving</li>
+      <li>Helps</li>
+      <li>Knowledge</li>
+      <li>Leadership</li>
+      <li>Mercy/Compassion</li>
+      <li>Missions</li>
+      <li>Pastoring</li>
+      <li>Service</li>
+      <li>Teaching</li>
+      <li>Wisdom</li>
+    </ul>
+  </div>
+</div>
   <body>
 
    <!-- future possibilty of sending result to pastors     
@@ -66,10 +104,11 @@
     <div id="all-gifts">
       
       <div id="searchbar">
+        <button id="infoButton" type="button">ⓘ</button>
       <input type="text" id="searchInput"
 placeholder="Search Gift">
 
-<button id="searchButton">
+<button id="searchButton" type="button">
   <i class="fas fa-search"></i>
 </button>
 </div>
@@ -542,7 +581,7 @@ window.addEventListener('DOMContentLoaded', function() {
     // Create another element for the text
     var textBox = document.createElement('span');
     textBox.innerText =
-        "Welcome!\nThis test is 80 questions long, once completed compare your results to the bottom of the page.\n(5 is definitely agree 1 is strongly disagree)";
+        "Welcome!\nThis test is 80 questions long, once completed compare your results by searching for your gifts.\n(5 is definitely agree 1 is strongly disagree)";
 
     // Append the text element to the alert box
     alertBox.appendChild(textBox);
@@ -1728,6 +1767,23 @@ function deselectButtons() {
   document.getElementById("gift-modal").style.display = "none";
 });
        
+
+
+document.getElementById("infoButton").addEventListener("click", function () {
+  document.getElementById("info-modal").style.display = "flex";
+});
+
+document.getElementById("close-info-modal").addEventListener("click", function () {
+  document.getElementById("info-modal").style.display = "none";
+});
+
+window.addEventListener("click", function (e) {
+  const infoModal = document.getElementById("info-modal");
+
+  if (e.target === infoModal) {
+    infoModal.style.display = "none";
+  }
+});
     </script>
   </body>
 </html>
