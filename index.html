@@ -1,5 +1,4 @@
-
-</html><!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -581,7 +580,7 @@ window.addEventListener('DOMContentLoaded', function() {
     // Create another element for the text
     var textBox = document.createElement('span');
     textBox.innerText =
-        "Welcome!\nThis test is 80 questions long, once completed please compare your results by searching for your gifts.\n(5 is definitely agree 1 is strongly disagree)";
+        "Welcome!\nThis test is 80 questions long, once completed compare your results by searching for your gifts.\n(5 is definitely agree 1 is strongly disagree)";
 
     // Append the text element to the alert box
     alertBox.appendChild(textBox);
@@ -1784,6 +1783,18 @@ window.addEventListener("click", function (e) {
     infoModal.style.display = "none";
   }
 });
+
+
+ function setAppHeight() {
+    const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    document.documentElement.style.setProperty('--app-height', h + 'px');
+  }
+
+  setAppHeight();
+  window.addEventListener('resize', setAppHeight);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', setAppHeight);
+  }
     </script>
   </body>
 </html>
