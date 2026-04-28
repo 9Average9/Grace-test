@@ -247,3 +247,29 @@ body {
   text-align: center;
   z-index: 400;
 }
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f3f6ff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  margin: 8px 0;
+  font-weight: 700;
+}
+
+.result-info-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: #284a95;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.result-info-btn:hover {
+  background: #172b5c;
+}
