@@ -1818,6 +1818,12 @@ function setAppHeight() {
     return;
   }
 
+  const height = window.visualViewport
+    ? window.visualViewport.height
+    : window.innerHeight;
+
+  document.documentElement.style.setProperty("--app-height", height + "px");
+}
   setAppHeight();
   window.addEventListener('resize', setAppHeight);
   if (window.visualViewport) {
