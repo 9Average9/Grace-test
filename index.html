@@ -580,7 +580,7 @@ window.addEventListener('DOMContentLoaded', function() {
     // Create another element for the text
     var textBox = document.createElement('span');
     textBox.innerText =
-        "Welcome!\nThis test is 80 questions long, once completed please submit your answers.\n(5 is definitely agree 1 is strongly disagree)";
+        "Welcome!\nThis test is 80 questions long for accuracy, once completed please submit your answers.\n(5 is definitely agree 1 is strongly disagree)";
 
     // Append the text element to the alert box
     alertBox.appendChild(textBox);
@@ -1812,9 +1812,10 @@ window.addEventListener("click", function (e) {
 });
 
 
- function setAppHeight() {
-    const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-    document.documentElement.style.setProperty('--app-height', h + 'px');
+function setAppHeight() {
+  // 🚫 If keyboard is open, do NOT update height
+  if (window.visualViewport && window.visualViewport.height < window.innerHeight * 0.75) {
+    return;
   }
 
   setAppHeight();
