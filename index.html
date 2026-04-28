@@ -580,7 +580,7 @@ window.addEventListener('DOMContentLoaded', function() {
     // Create another element for the text
     var textBox = document.createElement('span');
     textBox.innerText =
-        "Welcome!\nThis test is 80 questions long, once completed compare your results by searching for your gifts.\n(5 is definitely agree 1 is strongly disagree)";
+        "Welcome!\nThis test is 80 questions long, once completed please submit your answers.\n(5 is definitely agree 1 is strongly disagree)";
 
     // Append the text element to the alert box
     alertBox.appendChild(textBox);
@@ -1638,11 +1638,38 @@ function onSubmit(event) {
   let resultText = "<h3>Your Spiritual Gifts are:</h3>";
 
   result.forEach((gift, index) => {
-    resultText += `<h5>${index + 1}. ${gift.gift}</h5>`;
+    resultText += `
+  <div class="result-item">
+    <span>${index + 1}. ${gift.gift}</span>
+    <button class="result-info-btn" data-gift="${gift.gift}">ⓘ</button>
+  </div>
+`;
   });
 
   document.getElementById("result").style.display = "block";
   document.getElementById("gift").innerHTML = resultText;
+
+  document.querySelectorAll(".result-info-btn").forEach(btn => {
+  btn.addEventListener("click", function () {
+    const giftName = this.getAttribute("data-gift").toLowerCase();
+
+    const giftTitles = Array.from(document.querySelectorAll("#all-gifts h6"));
+
+    const match = giftTitles.find(title =>
+      title.innerText.toLowerCase().includes(giftName)
+    );
+
+    if (!match) return;
+
+    const description = match.nextElementSibling;
+
+    document.getElementById("modal-title").innerText = match.innerText;
+    document.getElementById("modal-text").innerText =
+      description ? description.innerText : "";
+
+    document.getElementById("gift-modal").style.display = "flex";
+  });
+});
 }
 
 
