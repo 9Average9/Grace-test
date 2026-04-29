@@ -235,17 +235,22 @@ body {
 }
 
 /* ALERT */
+/* ALERT */
 .alert-box {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: min(480px, 90vw);
-  background: white;
+  background: linear-gradient(145deg, #ffffff, #eef4ff);
+  border: 2px solid rgba(40, 74, 149, 0.25);
   border-radius: var(--radius);
-  padding: 18px;
+  padding: 22px 20px;
   text-align: center;
   z-index: 400;
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.8);
 }
 
 .result-item {
