@@ -1762,6 +1762,7 @@ document.getElementById("searchButton").addEventListener("click", function() {
 
 
 function deselectButtons() {
+  localStorage.removeItem(CURRENT_ANSWERS_KEY);
     const selectedButtons = Array.from(document.querySelectorAll("button.selected"));
     selectedButtons.forEach((button) => {
         button.classList.remove("selected");
@@ -1829,6 +1830,57 @@ function setAppHeight() {
   if (window.visualViewport) {
     window.visualViewport.addEventListener('resize', setAppHeight);
   }
+  
+  const CURRENT_ANSWERS_KEY = "spiritualGiftsCurrentAnswers";
+
+function getQuestionBlocks() {
+  return Array.from(document.querySelectorAll("#questions > div"));
+}
+
+function getAnswerButtons(questionBlock) {
+  return Array.from(questionBlock.querySelectorAll("button"))
+    .filter(button => ["1", "2", "3", "4", "5"].includes(button.textContent.trim()));
+}
+
+function saveCurrentAnswers() {
+  const answers = getQuestionBlocks().map(questionBlock => {
+    const selectedButton = getAnswerButtons(questionBlock).find(button =>
+      button.classList.contains("selected")
+    );
+
+    return selectedButton ? selectedButton.textContent.trim() : null;
+  });
+
+  localStorage.setItem(CURRENT_ANSWERS_KEY, JSON.stringify(answers));
+}
+
+function restoreCurrentAnswers() {
+  const savedAnswers = JSON.parse(localStorage.getItem(CURRENT_ANSWERS_KEY) || "[]");
+
+  getQuestionBlocks().forEach((questionBlock, index) => {
+    const savedAnswer = savedAnswers[index];
+    if (!savedAnswer) return;
+
+    const buttonToClick = getAnswerButtons(questionBlock).find(button =>
+      button.textContent.trim() === savedAnswer
+    );
+
+    if (buttonToClick && !buttonToClick.classList.contains("selected")) {
+      buttonToClick.click();
+    }
+  });
+}
+
+document.addEventListener("click", function(event) {
+  if (event.target.closest("#questions button")) {
+    setTimeout(saveCurrentAnswers, 0);
+  }
+});
+
+window.addEventListener("DOMContentLoaded", function() {
+  setTimeout(restoreCurrentAnswers, 100);
+});
+  
     </script>
   </body>
 </html>
